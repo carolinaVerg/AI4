@@ -1,0 +1,5 @@
+numberOfVertices 2    ; number of vertices n in graph (from 1 to n)
+E 1 2 W 1                 ; Edge from vertex 1 to vertex 2, weight 1
+V 1 S                    ; Vertex 1 contains a hurricane shelter (a "goal vertex" - there may be more than one)
+V 2 P 1                  ; Vertex 4 initially contains 2 persons to be rescued
+D 4                   ; Deadline is at time 12
