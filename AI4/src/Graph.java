@@ -13,7 +13,7 @@ public class Graph {
 		VerticesNum=verticesNum;
 		Vertices=new LinkedList<>();
 		for (int i=1; i<=VerticesNum; i++){
-			Vertices.add(new Vertex(0,false,i));
+			Vertices.add(new Vertex(i));
 		}
 		this.peopleNotRescude = 0;
 	}

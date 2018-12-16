@@ -4,14 +4,10 @@ import java.util.ListIterator;
 
 
 public class Vertex {
-	private int People;
-	private boolean IsShelter;
 	private int Id;
 	private LinkedList<Pair> Edges;
 
-	public Vertex(int people,boolean isShelter, int id) {
-		this.People=people;
-		this.IsShelter=isShelter;
+	public Vertex(int id) {
 		this.Id=id;
 		this.Edges= new LinkedList<>();
 	}
@@ -23,7 +19,7 @@ public class Vertex {
 		 Vertex newVer;
 		 while(verIter.hasNext()) {
 			 curentVer=verIter.next();
-			 newVer=new Vertex(curentVer.getPeople(), curentVer.isIsShelter(), curentVer.getId());
+			 newVer=new Vertex(curentVer.getId());
 			 newVertices.add(newVer);
 		 }
 		 Iterator<Vertex> newVerIter=newVertices.listIterator(0);
@@ -58,21 +54,6 @@ public class Vertex {
 		
 	}
 
-	public int getPeople() {
-		return People;
-	}
-
-	public void setPeople(int people) {
-		People = people;
-	}
-
-	public boolean isIsShelter() {
-		return IsShelter;
-	}
-
-	public void setIsShelter(boolean isShelter) {
-		IsShelter = isShelter;
-	}
 
 	public int getId() {
 		return Id;
