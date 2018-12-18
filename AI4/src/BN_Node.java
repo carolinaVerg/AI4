@@ -4,6 +4,7 @@ public class BN_Node {
 	HashMap<Integer,BN_Node> parents;
 	HashMap<Integer,BN_Node> children;
 	int id;
+	double[] cpt;
 
 	public BN_Node(int id) {
 		this.id=id;
@@ -33,6 +34,10 @@ public class BN_Node {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public void updateCPT(){
+
 	}
 
 

@@ -7,14 +7,18 @@ public class main {
 
 
 	public static void main(String[] args) {
-		File file = new File("/home/carolina/eclipse-workspace/AI4/tests/test1.txt"); //graph description
+		File file = new File("C:\\univercity\\courses\\semester5\\intro to AI\\programming assignments\\AI4\\AI4\\tests\\test1.txt"); //graph description
         BufferedReader br = null;
 		String st = "";
 		initWorld(br,st,file);
-	
+        constructBayesNet();
 	}
 
-	private static void initWorld(BufferedReader br, String st, File file){
+    private static void constructBayesNet() {
+
+    }
+
+    private static void initWorld(BufferedReader br, String st, File file){
         try {
             br = new BufferedReader(new FileReader(file));
             try {
@@ -42,8 +46,10 @@ public class main {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        bnNet.updateCPT();
 
     }
+
 
 
     public static void updateVertex(String[] data){

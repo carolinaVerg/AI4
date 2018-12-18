@@ -9,7 +9,7 @@ public class BN_Net {
 		this.bs=new HashMap<>();
 		this.evs=new HashMap<>();
 		for(int i=1; i<= numOfFls; i++) {
-			fls.put(i, new BN_Fl(i, 0));
+			fls.put(i, new BN_Fl(i, 0.001));
 			evs.put(i, new BN_Ev(i));
 		}
 	}
@@ -32,6 +32,10 @@ public class BN_Net {
 		this.evs = evs;
 	}
 
-	
 
+	public void updateCPT() {
+		for (BN_Fl fl: fls.values()){
+
+		}
+	}
 }

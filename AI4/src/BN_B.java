@@ -6,4 +6,12 @@ public class BN_B extends BN_Node{
 		super(id);
 	}
 
+	@Override
+	public void updateCPT(){
+		int numOfParents = this.parents.size();
+		this.cpt = new double[numOfParents+1];
+		for(int i=2; i< this.cpt.length; i++){
+
+		}
+	}
 }
