@@ -1,17 +1,16 @@
 
 
 public class BN_B extends BN_Node{
-
-	public BN_B(int id) {
+    int weight;
+	public BN_B(int id, int weight) {
 		super(id);
+		this.weight = weight;
 	}
 
-	@Override
-	public void updateCPT(){
-		int numOfParents = this.parents.size();
-		this.cpt = new double[numOfParents+1];
-		for(int i=2; i< this.cpt.length; i++){
-
-		}
-	}
+    @Override
+    public void evalQi(double[] qiArray) {
+	    for (int i = 0 ; i< qiArray.length;i++){
+	        qiArray[i] = 1 - (0.6 / this.weight);
+        }
+    }
 }

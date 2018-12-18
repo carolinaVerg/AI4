@@ -33,9 +33,15 @@ public class BN_Net {
 	}
 
 
-	public void updateCPT() {
+	public void updateCPTInNet() {
 		for (BN_Fl fl: fls.values()){
-
+			fl.updateCPT();
+		}
+		for (BN_B b: bs.values()){
+			b.updateCPT();
+		}
+		for (BN_Ev ev: evs.values()){
+			ev.updateCPT();
 		}
 	}
 }

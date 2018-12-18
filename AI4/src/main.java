@@ -46,7 +46,7 @@ public class main {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        bnNet.updateCPT();
+        bnNet.updateCPTInNet();
 
     }
 
@@ -68,7 +68,7 @@ public class main {
         int weight = Integer.parseInt(data[6]);
         vfirst.addEdge(weight,vsecond);
         vsecond.addEdge(weight,vfirst);
-        BN_B newB= new BN_B(edgeId);
+        BN_B newB= new BN_B(edgeId, weight);
         bnNet.getBs().put(edgeId,newB);
         updateBnNet(idN1, idN2,edgeId);
      

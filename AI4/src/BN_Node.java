@@ -37,9 +37,41 @@ public class BN_Node {
 	}
 
 	public void updateCPT(){
+		int numOfParents = this.parents.size();
+		this.cpt = new double[(int)Math.pow(2,numOfParents)+1];
+		double[] qiArray = new double[numOfParents];
+		evalQi(qiArray);
+		for (int i = 1; i<cpt.length; i++){
+			double qiProduct = 1;
+			double startRange = 1;
+			double endRange = cpt.length-1;
+			boolean[] boolParents = new boolean[numOfParents];
+			for (int j = 0; j<boolParents.length;j++){
+				if (i<= ( endRange - ((endRange)*(0.5))) && i >= startRange){
+					boolParents[j] = false;
+					endRange = endRange - (endRange)*(0.5);
+				}
+				else{
+					boolParents[j] = true;
+					startRange = startRange + (endRange)*(0.5);
+				}
+			}
+			for(int k =0; k<boolParents.length;k++){
+				if(boolParents[k]){
+					qiProduct = qiProduct * qiArray[k];
+				}
+			}
+			if((1-qiProduct)==0){
+				this.cpt[i] = 0.001;
+			}else{
+				this.cpt[i] = 1-qiProduct;
+			}
 
+		}
 	}
 
+	public void evalQi(double[] qiArray) {
+	}
 
 
 }
