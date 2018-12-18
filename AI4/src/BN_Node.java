@@ -43,17 +43,18 @@ public class BN_Node {
 		evalQi(qiArray);
 		for (int i = 1; i<cpt.length; i++){
 			double qiProduct = 1;
-			double startRange = 1;
+			double startRange = 0;
 			double endRange = cpt.length-1;
 			boolean[] boolParents = new boolean[numOfParents];
 			for (int j = 0; j<boolParents.length;j++){
-				if (i<= ( endRange - ((endRange)*(0.5))) && i >= startRange){
+				double check = ((endRange-startRange)/2);
+				if ((i<= ( endRange - ((endRange-startRange)/2))) && (i >= startRange)){
 					boolParents[j] = false;
-					endRange = endRange - (endRange)*(0.5);
+					endRange = endRange - (endRange-startRange)/2;
 				}
 				else{
 					boolParents[j] = true;
-					startRange = startRange + (endRange)*(0.5);
+					startRange = startRange + (endRange-startRange)/2;
 				}
 			}
 			for(int k =0; k<boolParents.length;k++){
