@@ -55,7 +55,7 @@ public class main {
     public static void updateVertex(String[] data){
         int vid = Integer.parseInt(data[1]);
         double dis=Double.parseDouble(data[3]);
-        bnNet.getFls().get(vid).setDistribution(dis);
+        ((BN_Fl)bnNet.getFls().get(vid)).setDistribution(dis);
 
     }
 
@@ -74,11 +74,11 @@ public class main {
      
     }
     public static void updateBnNet(int v1, int v2, int edge) {
-    	BN_B newB= bnNet.getBs().get(edge);
-    	BN_Fl fl1=bnNet.getFls().get(v1);
-    	BN_Fl fl2=bnNet.getFls().get(v2);
-    	BN_Ev ev1=bnNet.getEvs().get(v1);
-    	BN_Ev ev2=bnNet.getEvs().get(v2);
+    	BN_Node newB= bnNet.getBs().get(edge);
+    	BN_Node fl1=bnNet.getFls().get(v1);
+    	BN_Node fl2=bnNet.getFls().get(v2);
+    	BN_Node ev1=bnNet.getEvs().get(v1);
+    	BN_Node ev2=bnNet.getEvs().get(v2);
     	
     	newB.getParents().put(v1, fl1);
     	newB.getParents().put(v2, fl2);
