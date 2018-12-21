@@ -43,8 +43,9 @@ public class BN_Net {
 			vars.add(node);
 		for(BN_Node node: this.evs.values())
 			vars.add(node);
+		LinkedList<BN_Node>vars2= (LinkedList<BN_Node>) vars.clone();
 		Qx[0]= Enumerate_AllVars(vars , eT);  // true
-		Qx[1]= Enumerate_AllVars(vars , eF);  // true
+		Qx[1]= Enumerate_AllVars(vars2 , eF);  // false
 		return normlize(Qx);
 	
 	}
@@ -74,7 +75,13 @@ public class BN_Net {
 			counter++;
 				
 		}
-		return y.cpt[entryNum];
+		if(value){
+			return y.cpt[entryNum];
+		}
+		else{
+			return 1- y.cpt[entryNum];
+		}
+
 	}
 	public double [] normlize(double Qx []) {
 		double alpha =1/(Qx[0]+Qx[1]);

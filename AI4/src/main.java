@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 public class main {
@@ -11,12 +12,61 @@ public class main {
         BufferedReader br = null;
 		String st = "";
 		initWorld(br,st,file);
-        constructBayesNet();
+        HashMap<BN_Node,Boolean> evidence = queryEvidence();
+        BN_Node query = getQuery();
+        double[] res = bnNet.Enumeration_Ask(query,evidence);
+        int i =0;
 	}
 
-    private static void constructBayesNet() {
-
+    private static BN_Node getQuery() {
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Enter query in the format: <variable type - id>");
+        String[] nextEvi = reader.nextLine().split(" ");
+        BN_Node bnToReturn = null;
+        switch (nextEvi[0]){
+            case "fl":
+                bnToReturn = bnNet.getFls().get(Integer.parseInt(nextEvi[1]));
+                break;
+            case "b":
+                bnToReturn = bnNet.getBs().get(Integer.parseInt(nextEvi[1]));
+                break;
+            case "ev":
+                bnToReturn = bnNet.getEvs().get(Integer.parseInt(nextEvi[1]));
+                break;
+                default:
+                    break;
+        }
+        return bnToReturn;
     }
+
+    private static HashMap<BN_Node,Boolean> queryEvidence() {
+	    Scanner reader = new Scanner(System.in);
+	    System.out.println("Enter number of evidence:");
+	    int numOfevi = Integer.parseInt(reader.nextLine());
+	    HashMap<BN_Node,Boolean> evidence = new HashMap<>();
+	    for(int i = 0; i<numOfevi;i++){
+	        // [fl/b/ev --- id ---- true/false]
+            System.out.println("Enter the fallowing format: <variable type , id , boolean value>");
+            String[] nextEvi = reader.nextLine().split(" ");
+	        BN_Node eviToadd = null;
+            switch (nextEvi[0]){
+                case "fl":
+                    eviToadd = bnNet.getFls().get(Integer.parseInt(nextEvi[1]));
+                    break;
+                case "b":
+                    eviToadd = bnNet.getBs().get(Integer.parseInt(nextEvi[1]));
+                    break;
+                case "ev":
+                    eviToadd = bnNet.getEvs().get(Integer.parseInt(nextEvi[1]));
+                    break;
+                    default:
+                        break;
+            }
+            evidence.put(eviToadd,Boolean.parseBoolean(nextEvi[2]));
+        }
+        return evidence;
+    }
+
 
     private static void initWorld(BufferedReader br, String st, File file){
         try {
@@ -93,6 +143,6 @@ public class main {
     }
 
 
-	
+
 	}
 
