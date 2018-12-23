@@ -65,12 +65,12 @@ public class main {
             BN_B bVertex = (BN_B) bnNet.getBs().get(i);
             for (int j = 0; j < 2; j++) {
                 for (int k = 1; k < bVertex.cpt.length; k++) {
-                    String probStr = generateProbString(k - 1, bVertex);
+                    String probStr = generateProbString(k - 1, bVertex,true);
                     double prob = bVertex.getCpt()[k];
                     if (j != 0) {
                         prob = 1 - prob;
                     }
-                    System.out.format("P(%s Evacuees| %s) = %fl\n", trueOrFalse[j], probStr, prob);
+                    System.out.format("P(%s Blockage| %s) = %fl\n", trueOrFalse[j], probStr, prob);
                 }
             }
             System.out.println("-----------------------");
@@ -90,7 +90,7 @@ public class main {
                 }
                 System.out.format("P(%s Flooding) = %fl\n", trueOrFalse[j], flDis);
                 for (int k = 1; k < evVertex.cpt.length; k++) {
-                    String probStr = generateProbString(k - 1, evVertex);
+                    String probStr = generateProbString(k - 1, evVertex,false);
                     double prob = evVertex.getCpt()[k];
                     if (j != 0) {
                         prob = 1 - prob;
@@ -102,10 +102,13 @@ public class main {
         }
     }
 
-    private static String generateProbString(int k, BN_Node vertex) {
+    private static String generateProbString(int k, BN_Node vertex,boolean isEdge) {
         String[] binaryStr = String.format("%08d", Integer.parseInt(Integer.toBinaryString(k))).split("");
         String probExp = "";
         String b = "Blockage ";
+        if(isEdge){
+            b = "Flooding ";
+        }
         int pos = 8 - vertex.getParents().size();
         for (BN_Node pr : vertex.parents.values()) {
             if (binaryStr[pos].equals("0")) {
