@@ -12,6 +12,10 @@ public class BN_Node {
 		children= new HashMap<>();
 	}
 
+	public double[] getCpt() {
+		return cpt;
+	}
+
 	public HashMap<Integer, BN_Node> getParents() {
 		return parents;
 	}
